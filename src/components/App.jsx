@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import ListItem from "./listItem";
 import Heading from "./Heading";
 import InputField from "./Input";
-import Button from "./Button"
-
+import Button from "./Button";
 function App() {
   const [inputText, setInputText] = useState("");
   const [items, setItems] = useState([]);
@@ -19,18 +18,30 @@ function App() {
     });
     setInputText("");
   }
+  function deleteItem(id) {
+    setItems((prevItems) => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
 
   return (
     <div className="container">
-      <Heading/>
       <div className="form">
+        <Heading />
         <InputField change={handleChange} text="text" value={inputText} />
-        <Button click={addItem}/>
+        <Button click={addItem} />
       </div>
       <div>
         <ul>
-          {items.map((todoItem) => (
-            <ListItem text={todoItem} />
+          {items.map((todoItem, index) => (
+            <ListItem
+              key={index}
+              id={index}
+              text={todoItem}
+              onChecked={deleteItem}
+            />
           ))}
         </ul>
       </div>
