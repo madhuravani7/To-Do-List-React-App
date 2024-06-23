@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ListItem from "./listItem";
 import Heading from "./Heading";
 import InputField from "./Input";
+import Button from "./Button"
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -24,9 +25,7 @@ function App() {
       <Heading/>
       <div className="form">
         <InputField change={handleChange} text="text" value={inputText} />
-        <button onClick={addItem}>
-          <span>Add</span>
-        </button>
+        <Button click={addItem}/>
       </div>
       <div>
         <ul>
